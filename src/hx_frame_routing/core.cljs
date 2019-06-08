@@ -7,10 +7,10 @@
    [hx-frame-routing.subscriptions :as subscriptions]))
 
 (def initial-state
-  {:router/route nil
-   :router/route-params nil
-   :router/route-query nil
-   :router/initialized false})
+  {:hx-frame-router {:route nil
+                     :route-params nil
+                     :route-query nil
+                     :initialized false}})
 
 (s/def :router/initialized boolean?)
 (s/def :router/route (s/nilable keyword?))

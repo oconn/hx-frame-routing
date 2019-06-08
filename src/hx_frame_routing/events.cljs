@@ -41,7 +41,7 @@
    (fn [route]
      (pushy/set-token! history route))))
 
-(defn- pushy-init
+(defn initialize
   "Initializes hx-frame-routing"
   [routes]
   (fn [_]
@@ -85,5 +85,5 @@
    initialized)
 
   (hx-frame/register-effect
-   :router/pushy-init
-   (pushy-init routes)))
+   :router/initialize
+   (initialize routes)))

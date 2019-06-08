@@ -1,0 +1,12 @@
+{
+  "name": "hx-frame-routing",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:oconn/hx-frame-routing.git",
+  "author": "Matt O'Connell <matthew.j.oconnell1@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
+}

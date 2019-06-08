@@ -5,7 +5,8 @@
    [hx-frame-routing.core :as hx-frame-routing]
    [hx-frame-routing.events :as e]))
 
-(def app-context {:db hx-frame-routing/initial-state})
+(def app-context {:db (merge {}
+                             hx-frame-routing/initial-state)})
 
 (deftest url->query
   (testing "Returns the query parameter of a route as a map."
@@ -16,15 +17,15 @@
   (testing "Sets initialized flag to true"
     (is (-> (:db app-context)
             (e/initialized [:router/initialized])
-            :router/initialized
-            true?))))
+            (get-in [:hx-frame-router :initialized])
+            (true?)))))
 
 (deftest set-route
   (testing "Properly sets route state when dispatched"
-    (is (= {:router/route :blog-post
-            :router/route-params {:blog-id 12345}
-            :router/route-query {"q" "foo"}
-            :router/initialized false}
+    (is (= {:hx-frame-router {:route :blog-post
+                              :route-params {:blog-id 12345}
+                              :route-query {"q" "foo"}
+                              :initialized false}}
            (with-redefs [e/get-route-query (constantly {"q" "foo"})]
              (e/set-route (:db app-context)
                           [:router/set-route
@@ -33,5 +34,6 @@
 
 (deftest nav-to
   (testing "Dispatches `nav-to` side-effect"
-    (is (contains? (e/nav-to app-context [:nav-to "https://site.com"])
-                   :router/nav-to))))
+    (is (contains?
+         (e/nav-to app-context [:nav-to "https://site.com"])
+         :router/nav-to))))
