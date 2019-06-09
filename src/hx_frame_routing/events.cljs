@@ -69,7 +69,7 @@
          initialized-interceptors []
          router-interceptors []}}]
 
-  (hx-frame/register-event
+  (hx-frame/register-event-db
    :router/set-route
    (into router-interceptors set-route-interceptors)
    set-route)
@@ -79,7 +79,7 @@
    (into router-interceptors nav-to-interceptors)
    nav-to)
 
-  (hx-frame/register-event
+  (hx-frame/register-event-db
    :router/initialized
    (into router-interceptors initialized-interceptors)
    initialized)
