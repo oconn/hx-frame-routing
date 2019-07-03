@@ -28,15 +28,15 @@
   (let [route-params (hx-frame/subscribe [:router/route-params])
         route-query (hx-frame/subscribe [:router/route-query])
         route (hx-frame/subscribe [:router/route])
-        rendered-container (if (seq middleware)
-                             (:container (reduce #(%2 %1)
-                                                 {:container container}
-                                                 middleware))
-                             container)]
+        RenderedContainer (if (seq middleware)
+                            (:container (reduce #(%2 %1)
+                                                {:container container}
+                                                middleware))
+                            container)]
 
-    [rendered-container {:route-params route-params
-                         :route-query route-query
-                         :route route}]))
+    [RenderedContainer {:route-params route-params
+                        :route-query route-query
+                        :route route}]))
 
 (defn create-route-middleware
   "Route middleware is an itterator that reduces over a sequence of
