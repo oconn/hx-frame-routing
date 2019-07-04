@@ -30,7 +30,10 @@
         route (hx-frame/subscribe [:router/route])
         RenderedContainer (if (seq middleware)
                             (:container (reduce #(%2 %1)
-                                                {:container container}
+                                                {:container container
+                                                 :route-params route-params
+                                                 :route-query route-query
+                                                 :route route}
                                                 middleware))
                             container)]
 
@@ -48,5 +51,6 @@
              Bootstraping data"
   []
   (fn [container middleware]
-    (hx/f [Middleware {:container container
-                       :middleware middleware}])))
+    (hx/f
+     [Middleware {:container container
+                  :middleware middleware}])))
