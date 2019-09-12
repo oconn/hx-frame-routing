@@ -2,7 +2,9 @@
   (:require [bidi.bidi :as bidi]
             [cemerick.url :as cemerick-url]
             [pushy.core :as pushy]
-            [hx-frame.core :as hx-frame]))
+            [hx-frame.core :as hx-frame]
+
+            [hx-frame-routing.utils :as utils]))
 
 (defn- url->query
   "Returns the query params from a url"
@@ -68,6 +70,8 @@
          nav-to-interceptors []
          initialized-interceptors []
          router-interceptors []}}]
+
+  (reset! utils/app-routes routes)
 
   (hx-frame/register-event-db
    :router/set-route
