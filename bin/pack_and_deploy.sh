@@ -24,7 +24,7 @@ rm -f app.jar
 clojure -Apack
 
 # Upload to clojars
-clj -Adeploy
+clojure -Adeploy
 
 perl -pi -e "s/$(git rev-parse HEAD)/HEAD/g" pom.xml
 
